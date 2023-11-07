@@ -1,2 +1,2 @@
-# VNS
-A Novel Variable Neighborhood Search Approach for Cell Clustering Using Gene Expression and Spatial Coordinates
+# Variable Neighborhood Search Approach for Cell Clustering
+The Variable Neighborhood Search (VNS) method is well known metaheuristic method, which starts from one point from the search space, explores its neighborhoods and repeats the whole process until better solution is found or some stopping criteria is reached. Leveraging the well-established foundation of VNS, first we present a comprehensive solution for the cell clustering problem in the form of the Integer Linear Programming (ILP) minimization problem, which is based on the p-median classification. The proposed algorithm exhibits the ability to organize cells into clusters, utilizing information from both gene expression matrices and spatial coordinates.
