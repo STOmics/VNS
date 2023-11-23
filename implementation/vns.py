@@ -11,6 +11,7 @@ from sklearn.metrics import pairwise_distances, calinski_harabasz_score
 from scipy.spatial.distance import pdist, squareform, cdist
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import adjusted_rand_score
+import argparse
 
 # VNS Functions
 
@@ -96,20 +97,35 @@ def vns(max_iter, parameter, m, alpha, s, seed):
     return x_best, f_best
 
 if __name__ == "__main__":
-    # input parameters: adata_path, ground_truth, emb
-    adata_path = '/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad' # adata path
-    ground_truth = 'celltype_pred' # OPTIONAL: Ground truth annotation in adata.obs
 
-    emb = 'GraphST' # choose embeddings: 'CCST', 'GraphST', 'STAGATE', 'X_pca' etc.
-    k = 33 # number of clusters
+    parser = argparse.ArgumentParser(description='Description of your script')
 
-    #additional parameters: max_iter, parameter, m, alpha, s, seed
-    max_iter = 10
-    parameter = 12
-    m = 15
-    alpha = 1
-    s = 20
-    seed = 4639
+    # Add command-line arguments
+    parser.add_argument('--adata_path', type=str, default='/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad', help='Path to adata file')
+    parser.add_argument('--ground_truth', type=str, default='celltype_pred', help='Ground truth annotation in adata.obs')
+    parser.add_argument('--emb', type=str, default='X_pca', choices=['CCST', 'GraphST', 'STAGATE', 'X_pca'], help='Choose embeddings')
+    parser.add_argument('-k', type=int, default=20, help='Number of clusters')
+    parser.add_argument('--max_iter', type=int, default=10, help='Maximum number of iterations')
+    parser.add_argument('--parameter', type=int, default=12, help='Parameter value')
+    parser.add_argument('-m', type=int, default=15, help='Value of m')
+    parser.add_argument('--alpha', type=int, default=1, help='Value of alpha')
+    parser.add_argument('-s', type=int, default=10, help='Value of s')
+    parser.add_argument('--seed', type=int, default=4639, help='Seed value')
+
+    # Parse the command-line arguments
+    args = parser.parse_args()
+
+    # Access the command-line arguments
+    adata_path = args.adata_path
+    ground_truth = args.ground_truth
+    emb = args.emb
+    k = args.k
+    max_iter = args.max_iter
+    parameter = args.parameter
+    m = args.m
+    alpha = args.alpha
+    s = args.s
+    seed = args.seed
 
     adata = sc.read_h5ad(adata_path)
     n = adata.shape[0]
@@ -135,10 +151,6 @@ if __name__ == "__main__":
 
     distance = alpha * distance_gene + (1 - alpha) * coord
 
-    n = distance_gene.shape[0]
-    #print("Number of clusters: ", k)
-    #print("Number of cells: ", n)
-
     # VNS Implementation
 
     print(f'max_iter, parameter, m, alpha, s, seed = [{max_iter}, {parameter}, {m}, {alpha}, {s}, {seed}]')
@@ -162,3 +174,5 @@ if __name__ == "__main__":
         cell_solution.append(x_best[min_index])
 
     adata.obs['VNS'] = cell_solution
+
+
