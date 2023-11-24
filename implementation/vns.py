@@ -101,30 +101,30 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Description of your script')
 
     # Add command-line arguments
-    parser.add_argument('--adata_path', type=str, default='/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad', help='Path to adata file')
-    parser.add_argument('--ground_truth', type=str, default='celltype_pred', help='Ground truth annotation in adata.obs')
-    parser.add_argument('--emb', type=str, default='X_pca', choices=['CCST', 'GraphST', 'STAGATE', 'X_pca'], help='Choose embeddings')
+    #parser.add_argument('--adata_path', type=str, default='/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad', help='Path to adata file')
+
+    parser.add_argument('-adata_path', type=str, default='data.h5ad', help='Path to adata file')
+    parser.add_argument('-emb', type=str, default='X_pca', choices=['CCST', 'GraphST', 'STAGATE', 'X_pca', 'STAligner'], help='Choose embeddings')
     parser.add_argument('-k', type=int, default=20, help='Number of clusters')
-    parser.add_argument('--max_iter', type=int, default=10, help='Maximum number of iterations')
-    parser.add_argument('--parameter', type=int, default=12, help='Parameter value')
-    parser.add_argument('-m', type=int, default=15, help='Value of m')
-    parser.add_argument('--alpha', type=int, default=1, help='Value of alpha')
-    parser.add_argument('-s', type=int, default=10, help='Value of s')
-    parser.add_argument('--seed', type=int, default=4639, help='Seed value')
+    parser.add_argument('-max_iter', type=int, default=10, help='Maximum number of iterations')
+    parser.add_argument('-p', type=int, default=12, help='Local search parameter')
+    parser.add_argument('-m', type=int, default=15, help='Local search parameter')
+    parser.add_argument('-alpha', type=int, default=1, help='Precentage of the influence of the embedding values')
+    parser.add_argument('-k_max', type=int, default=10, help='	Maximal number of neighborhoods that should be searched')
+    parser.add_argument('-seed', type=int, default=1234, help='Seed value')
 
     # Parse the command-line arguments
     args = parser.parse_args()
 
     # Access the command-line arguments
     adata_path = args.adata_path
-    ground_truth = args.ground_truth
     emb = args.emb
     k = args.k
     max_iter = args.max_iter
-    parameter = args.parameter
+    parameter = args.p
     m = args.m
     alpha = args.alpha
-    s = args.s
+    s = args.k_max
     seed = args.seed
 
     adata = sc.read_h5ad(adata_path)
