@@ -2,15 +2,10 @@ import numpy as np
 import random
 import time
 import copy
-import matplotlib.pyplot as plt
 import scanpy as sc
-import anndata as ad
 import pandas as pd
-from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.metrics import pairwise_distances, calinski_harabasz_score
 from scipy.spatial.distance import pdist, squareform, cdist
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import adjusted_rand_score
 import argparse
 
 # VNS Functions
@@ -101,8 +96,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Description of your script')
 
     # Add command-line arguments
-    #parser.add_argument('--adata_path', type=str, default='/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad', help='Path to adata file')
-
     parser.add_argument('-adata_path', type=str, default='data.h5ad', help='Path to adata file')
     parser.add_argument('-emb', type=str, default='X_pca', choices=['CCST', 'GraphST', 'STAGATE', 'X_pca', 'STAligner'], help='Choose embeddings')
     parser.add_argument('-k', type=int, default=20, help='Number of clusters')
