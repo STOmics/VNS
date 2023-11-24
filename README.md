@@ -9,8 +9,8 @@ The Variable Neighborhood Search (VNS) method is well known metaheuristic method
 | emb | str  | Choose embeddings ('CCST', 'GraphST', 'STAGATE', 'X_pca' etc.)  | X_pca  |
 | k  | int  | Number of clusters  | 20  |
 | max_iter  | int  | Maximal number of iterations   | 20  |
-| p  | int  | Local search parameter  | 12  |
-| m  | int  | Local search parameter  | 15  |
+| p  | int  | _LocalSearch_ parameter  | 12  |
+| m  | int  | _LocalSearch_ parameter  | 15  |
 | alpha  | int | Precentage of the influence of the embedding values  | 1  |
 | s  | int  | Maximal number of neighborhoods that should be searched  | 10  |
 | seed  | int  | Seed value  | 1234  |
