@@ -5,7 +5,7 @@ The Variable Neighborhood Search (VNS) method is well known metaheuristic method
 | Name  | Type | Definition | Default |
 | ------------- | ------------- | ------------- | ------------- |
 | adata_path  | str  | Path to adata file  | data.h5ad  |
-| emb | str  | Choose embeddings ('CCST', 'GraphST', 'STAGATE', 'X_pca' etc.)  | X_pca  |
+| emb | str  | Choose embeddings ('CCST', 'GraphST', 'STAGATE', 'X_pca', 'STAligner')  | X_pca  |
 | k  | int  | Number of clusters  | 20  |
 | max_iter  | int  | Maximal number of iterations   | 20  |
 | p  | int  | _LocalSearch_ parameter  | 12  |
