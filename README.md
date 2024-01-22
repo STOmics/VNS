@@ -14,3 +14,7 @@ The Variable Neighborhood Search (VNS) method is well known metaheuristic method
 | s  | int  | Maximal number of neighborhoods that should be searched  | 10  |
 | seed  | int  | Seed value  | 1234  |
 
+To run the code, you can use the following example command:
+
+```bash
+python vns.py --adata_path '/goofys/BCO/Benchmark/SS200000128TR_E2_benchmark.h5ad' --ground_truth 'celltype_pred' --emb 'GraphST' --k 33 --max_iter 10 --param 12 --m 15 --alpha 1 --s 20 --seed 4639
